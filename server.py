@@ -35,6 +35,7 @@ def handle_client(conn):
                             my_move = move
                             break
                     board = next_state
+                    print('Played', my_move)
                     game.printState(board)
                     conn.sendall(str(my_move).encode())
                 else:

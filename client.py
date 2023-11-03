@@ -26,6 +26,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 my_move = move
                 break
         board = next_state
+        print("Played", my_move)
         game.printState(board)
         s.sendall(str(my_move).encode())
 

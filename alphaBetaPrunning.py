@@ -7,7 +7,7 @@ def go(s):
         print("Hum")
         return abmin(s,DEPTH,float("-inf"),float("inf"))[1]
     else:
-        print("Comp")
+        print("Thinking...")
         return abmax(s,DEPTH,float("-inf"),float("inf"))[1]
     # s = the state (max's turn)
     # d = max. depth of search
