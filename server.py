@@ -10,7 +10,7 @@ PORT = 8081
 
 def handle_client(conn):
     with conn:
-        print('Connected by', conn.getpeername())
+        print(f'Connected by {conn.getpeername()}\n')
         board = game.create()
         game.setMyColor('○','●')
         game.printState(board)
@@ -21,7 +21,7 @@ def handle_client(conn):
                 break
             try:
                 move = int(data.decode())
-                print('Received', move)
+                print(f'Received {move}\n')
                 if game.isLegal(move, board):
                     game.makeMove(move, board)
                     game.printState(board)
@@ -38,7 +38,7 @@ def handle_client(conn):
                     if my_move == 0:
                         conn.close()
                         break
-                    print('Played', my_move)
+                    print(f'Played {my_move}\n')
                     game.printState(board)
                     conn.sendall(str(my_move).encode())
                 else:
@@ -51,7 +51,7 @@ def handle_client(conn):
                 break
         game.printState(board)
         my_score, opp_score, result = game.whoWin(board)
-        print("Your score is:", my_score, "\nOpponent's score is:", opp_score)
+        print(f"Your score is: {my_score}\nOpponent's score is: {opp_score}\nThe result is: {result}\n")
         if result == game.VIC:
             print("You won!")
         elif result == game.LOSS:
