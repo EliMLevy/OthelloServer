@@ -3,9 +3,10 @@ import copy
 import game
 import socket
 
+# Server is ○
+
 HOST = ''
 PORT = 8081
-
 
 def handle_client(conn):
     with conn:

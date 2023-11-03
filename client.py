@@ -3,6 +3,8 @@ import copy
 import game
 import socket
 
+# Client is ●
+
 HOST = input("Enter the host: ")  # The server's hostname or IP address
 PORT = int(input("Enter the port:"))  # The port used by the server
 
