@@ -6,12 +6,12 @@ import socket
 HOST = input("Enter the host: ")  # The server's hostname or IP address
 PORT = int(input("Enter the port:"))  # The port used by the server
 
-game.setMyColor("●", "○")
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     print("Connected to", (HOST, PORT))
     board = game.create()
+    game.setMyColor("●", "○")
     game.printState(board)
     while not game.isFinished(board):
         # Choose my move

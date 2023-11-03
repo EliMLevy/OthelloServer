@@ -6,12 +6,12 @@ import socket
 HOST = ''
 PORT = 8081
 
-game.setMyColor('○','●')
 
 def handle_client(conn):
     with conn:
         print('Connected by', conn.getpeername())
         board = game.create()
+        game.setMyColor('○','●')
         game.printState(board)
         while not game.isFinished(board):
             data = conn.recv(10)
