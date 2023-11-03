@@ -14,6 +14,7 @@ def send_get_request():
     temp_host = input("Enter host: ")
     if temp_host != "":
         host = temp_host
+    print(host)
     # Choose my move
     my_move = 0
     print(game.legalMoves(board))
@@ -28,6 +29,7 @@ def send_get_request():
     print(board)
     game.printState(board)
     url = f"http://{host}/?move={my_move}"
+    print(url)
     try:
         response = requests.get(url)
         if response.status_code == 200:
