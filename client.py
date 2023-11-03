@@ -41,3 +41,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             game.makeMove(move, board)
             game.printState(board)
     game.printState(board)
+    my_score, opp_score, result = game.whoWin(board)
+    print("Your score is:", my_score, "\nOpponent's score is:", opp_score)
+    if result == game.VIC:
+        print("You won!")
+    elif result == game.LOSS:
+        print("You lost!")
+    else:
+        print("It's a tie!")

@@ -35,6 +35,9 @@ def handle_client(conn):
                             my_move = move
                             break
                     board = next_state
+                    if my_move == 0:
+                        conn.close()
+                        break
                     print('Played', my_move)
                     game.printState(board)
                     conn.sendall(str(my_move).encode())
@@ -47,6 +50,15 @@ def handle_client(conn):
                 conn.close()
                 break
         game.printState(board)
+        my_score, opp_score, result = game.whoWin(board)
+        print("Your score is:", my_score, "\nOpponent's score is:", opp_score)
+        if result == game.VIC:
+            print("You won!")
+        elif result == game.LOSS:
+            print("You lost!")
+        else:
+            print("It's a tie!")
+
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))

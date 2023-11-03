@@ -19,21 +19,25 @@ The state of the game is represented by a list of 4 items:
 
 '''
 
+def value(s):
+    #Returns the heuristic value of s
+
+    ### Enter your heuristic here ###
+
+    s[1]=1
+    return s[1]
+
 #The user decides who plays first
 def whoIsFirst(s):
     global HUMAN,COMPUTER
-
     s[2]=HUMAN ### your code here ###
-
     return s
 
 
 def setMyColor(my_color, opp_color):
     global HUMAN,COMPUTER
-
     COMPUTER = my_color
     HUMAN = opp_color
-    
 
 def isHumTurn(s):
 #Returns True iff it the human's turn to play
@@ -84,11 +88,6 @@ def inputMove(s):
             makeMove(move,s)
 
 
-def value(s):
-#Returns the heuristic value of s
-        s[1]=1  ### your code here ###
-        return s[1]
-
 def isFinished(s):
 #Returns True if the game ended
     return not anyLegalMove(s)
@@ -131,7 +130,7 @@ def makeMove(move, s):
     changePlayer (s)
     return s
 
-def whoWin (s):
+def whoWin(s):
     computerScore=0
     humanScore=0
     for sq in squares():
@@ -141,15 +140,11 @@ def whoWin (s):
         elif piece == HUMAN:
             humanScore += 1
     if (computerScore>humanScore):
-        return VIC
-
+        return computerScore, humanScore, VIC
     elif (computerScore<humanScore):
-        return LOSS
-
-    elif (computerScore==HUMAN):
-        return TIE
-
-    return 0.00001 #not 0 because TIE is 0
+        return computerScore, humanScore, LOSS
+    elif (computerScore==humanScore):
+        return computerScore, humanScore, TIE
 
 
 def isValid(move):
