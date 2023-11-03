@@ -11,7 +11,7 @@ PORT = int(input("Enter the port:"))  # The port used by the server
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
-    print("Connected to", (HOST, PORT))
+    print(f"Connected to {(HOST, PORT)}\n")
     board = game.create()
     game.setMyColor("●", "○")
     game.printState(board)
@@ -26,7 +26,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 my_move = move
                 break
         board = next_state
-        print("Played", my_move)
+        print(f"Played {my_move}\n")
         game.printState(board)
         s.sendall(str(my_move).encode())
 
@@ -36,13 +36,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.close()
             break
         move = int(data.decode())
-        print("Received", move)
+        print(f"Received {move}\n")
         if game.isLegal(move, board):
             game.makeMove(move, board)
             game.printState(board)
     game.printState(board)
     my_score, opp_score, result = game.whoWin(board)
-    print("Your score is:", my_score, "\nOpponent's score is:", opp_score)
+    print(f"Your score is: {my_score}\nOpponent's score is: {opp_score}\nThe result is: {result}\n")
     if result == game.VIC:
         print("You won!")
     elif result == game.LOSS:
