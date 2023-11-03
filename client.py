@@ -4,13 +4,16 @@ import game
 import alphaBetaPrunning
 import copy
 
+host = "localhost:8000"
 board = game.create() 
 game.printState(board)
 game.setMyColor('●', '○')
 
 def send_get_request():
     global board
-
+    temp_host = input("Enter host: ")
+    if temp_host != "":
+        host = temp_host
     # Choose my move
     my_move = 0
     print(game.legalMoves(board))
@@ -24,7 +27,7 @@ def send_get_request():
     board = next_state
     print(board)
     game.printState(board)
-    url = f"http://localhost:8000/?move={my_move}"
+    url = f"http://{host}/?move={my_move}"
     try:
         response = requests.get(url)
         if response.status_code == 200:
