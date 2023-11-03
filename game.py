@@ -91,9 +91,7 @@ def value(s):
 
 def isFinished(s):
 #Returns True if the game ended
-    if anyLegalMove(s):
-        return False  
-    return True
+    return not anyLegalMove(s)
 
 def isLegal(move, s):
     hasbracket = lambda direction: findBracket(move, s, direction)
